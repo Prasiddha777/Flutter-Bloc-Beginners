@@ -14,10 +14,10 @@ class PostRepository {
         final body = jsonDecode(resp.body.toString()) as List;
         return body.map((e) {
           return PostModel(
-            id: e['id'],
-            name: e['name'],
-            email: e['email'],
-            body: e['body'],
+            id: e['id'] as int,
+            name: e['name'] as String,
+            email: e['email'] as String,
+            body: e['body'] as String,
           );
         }).toList();
       }

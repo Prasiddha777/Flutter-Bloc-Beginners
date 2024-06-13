@@ -8,3 +8,8 @@ sealed class GetApiEvent extends Equatable {
 }
 
 class PostFetched extends GetApiEvent {}
+
+class SearchItem extends GetApiEvent {
+  final String searchText;
+  const SearchItem({required this.searchText});
+}

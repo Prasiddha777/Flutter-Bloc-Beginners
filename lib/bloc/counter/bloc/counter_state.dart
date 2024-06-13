@@ -16,4 +16,4 @@ class CounterState extends Equatable {
   List<Object> get props => [counter];
 }
 
-final class CounterInitial extends CounterState {}
+// final class CounterInitial extends CounterState {}
