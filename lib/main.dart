@@ -4,6 +4,7 @@ import 'package:learnbloc/bloc/counter/bloc/counter_bloc.dart';
 import 'package:learnbloc/bloc/get_api/bloc/get_api_bloc.dart';
 import 'package:learnbloc/bloc/todo/bloc/to_do_bloc.dart';
 import 'package:learnbloc/view/api/get_api_screen.dart';
+import 'package:learnbloc/view/api/login_screen.dart';
 import 'package:learnbloc/view/counter/counter_screen.dart';
 import 'package:learnbloc/view/todo_ui/todo_screen.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: const GetApiScreen(),
-        home: const CounterScreen(),
+        home: const LoginScreen(),
       ),
     );
   }
