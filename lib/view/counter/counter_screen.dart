@@ -10,35 +10,59 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
+  late CounterBloc _counterBloc;
+  @override
+  void initState() {
+    super.initState();
+    _counterBloc = CounterBloc();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _counterBloc.close();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          BlocBuilder<CounterBloc, CounterState>(builder: (context, state) {
-            return Text(state.counter.toString());
-          }),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                onPressed: () {
-                  context.read<CounterBloc>().add(IncrementCounter());
-                },
-                icon: const Icon(Icons.add),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.read<CounterBloc>().add(DecrementCounter());
-                },
-                icon: const Icon(Icons.remove),
-              ),
-            ],
-          )
-        ],
+    return BlocProvider(
+      create: (context) => _counterBloc,
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            BlocBuilder<CounterBloc, CounterState>(builder: (context, state) {
+              return Text(state.counter.toString());
+            }),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                BlocBuilder<CounterBloc, CounterState>(
+                    buildWhen: (previous, current) => false,
+                    builder: (context, state) {
+                      return IconButton(
+                        onPressed: () {
+                          context.read<CounterBloc>().add(IncrementCounter());
+                        },
+                        icon: const Icon(Icons.add),
+                      );
+                    }),
+                BlocBuilder<CounterBloc, CounterState>(
+                    buildWhen: (previous, current) => false,
+                    builder: (context, state) {
+                      return IconButton(
+                        onPressed: () {
+                          context.read<CounterBloc>().add(DecrementCounter());
+                        },
+                        icon: const Icon(Icons.remove),
+                      );
+                    }),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => CounterBloc()),
+        // BlocProvider(create: (context) => CounterBloc()),
         BlocProvider(create: (context) => ToDoBloc()),
         BlocProvider(create: (context) => GetApiBloc()),
       ],
@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const GetApiScreen(),
+        // home: const GetApiScreen(),
+        home: const CounterScreen(),
       ),
     );
   }
